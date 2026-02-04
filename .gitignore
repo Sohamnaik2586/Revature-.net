@@ -47,6 +47,17 @@ CodeCoverage/
 # MSBuild Binary and Structured Log
 *.binlog
 
+# Visual Studio cache
+.vs/
+
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
