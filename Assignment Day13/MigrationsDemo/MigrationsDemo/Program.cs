@@ -12,6 +12,45 @@ foreach (var customer in customers)
 {
     Console.WriteLine($"Customer ID: {customer.CustomerId}, Name: {customer.Name}, Email: {customer.Email}");
 }
+Console.WriteLine();
+Console.WriteLine("FILTER -> SORT -> SELECT");
+var resultsA = _context.Customers
+    .Where(c => c.Email.Contains("@example.com"))
+    .OrderBy(c => c.Name)
+    .Select(c => new { c.CustomerId, c.Name, c.Email })
+    .ToList();
+
+foreach (var item in resultsA)
+{
+    Console.WriteLine($"Id: {item.CustomerId}, Name: {item.Name}, Email: {item.Email}");
+}
+
+Console.WriteLine();
+Console.WriteLine("FILTER -> SELECT -> SORT");
+var resultsB = _context.Customers
+    .Where(c => c.Name.Length >= 4)
+    .Select(c => new { c.Name, c.Email })
+    .OrderBy(c => c.Name)
+    .ToList();
+
+foreach (var item in resultsB)
+{
+    Console.WriteLine($"Name: {item.Name}, Email: {item.Email}");
+}
+
+static void SeedData(CrmDbContext context)
+{
+    if (!context.Customers.Any())
+    {
+        context.Customers.AddRange(
+            new Customer { Name = "Alice", Email = "alice@example.com" },
+            new Customer { Name = "Bob", Email = "bob@example.com" },
+            new Customer { Name = "Sara", Email = "sara@example.com" }
+        );
+        context.SaveChanges();
+    }
+}
+
 
 class CrmDbContext : DbContext
 {
