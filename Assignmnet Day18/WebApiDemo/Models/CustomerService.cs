@@ -1,3 +1,4 @@
+using System.Runtime;
 using Microsoft.EntityFrameworkCore;
 public class CrmDbContext : DbContext
 {
@@ -30,5 +31,17 @@ public class CustomerService : ICustomerService
     public IEnumerable<Customer> GetAllCustomers()
     {
         return dbContext.Customers.ToList();
+    }
+}
+public class CustomerDTO
+{
+    pulbic string fullName { get; set; }
+}
+public class CustomerProfile: Profile
+{
+       public CustomerProfile()
+    {
+        CreateMap<Customer, CustomerDTO>()
+            .ForMember(dest => dest.fullName, opt => opt.MapFrom(src => src.Name));
     }
 }

@@ -12,6 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<CrmDbContext>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 
+bulider.Services.AddAutoMapper(Config =>
+{
+    Config.AddProfile<CustomerProfile>();
+}
 // Add Sql Server
 builder.Services.AddDbContext<CrmDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CrmDbConnection")));

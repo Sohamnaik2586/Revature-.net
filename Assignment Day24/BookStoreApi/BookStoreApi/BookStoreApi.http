@@ -1,0 +1,50 @@
+@BookStoreApi_HostAddress = http://localhost:5186
+# @id = 69b1050b9c30376eeb3cd6f6
+
+### Get weather sample
+GET {{BookStoreApi_HostAddress}}/weatherforecast
+Accept: application/json
+
+###
+
+### Get all books
+GET {{BookStoreApi_HostAddress}}/api/books
+
+###
+
+### Get book by id
+GET {{BookStoreApi_HostAddress}}/api/books/{{id}}
+
+###
+
+### Create new book
+POST {{BookStoreApi_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "Name": "Clean Code",
+  "Price": 43.15,
+  "Category": "Computer",
+  "Author": "Robert C. Martin"
+}
+
+###
+
+### Update book
+PUT {{BookStoreApi_HostAddress}}/api/books/{{id}}
+Content-Type: application/json
+
+{
+  "Id": "{{id}}",
+  "Name": "Clean Code - Updated",
+  "Price": 45.00,
+  "Category": "Computer",
+  "Author": "Robert C. Martin"
+}
+
+###
+
+### Delete book
+DELETE {{BookStoreApi_HostAddress}}/api/books/{{id}}
+
+###
